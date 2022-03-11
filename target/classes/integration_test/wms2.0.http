@@ -1,0 +1,193 @@
+### OMS下入库单（2.0）
+POST http://wms-web-plus.hope-saas-plus.qa.yunlizhi.net/warehouse_management_system/receipt_order/batch_save
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+[
+  {
+    "storeGoodsDetailList":[
+      {
+        "crossDocking":false,
+        "customerGoodsDetailNo":"0",
+        "defaultUnit":"箱",
+        "defaultUnitPre":5,
+        "ext":{
+          "goodUnit":"箱",
+          "isOverWarehouse":false,
+          "id":"5f400ab20bb34000b5d57f82ebdb7097"
+        },
+        "skuCode":"ADOMAOCAI"
+      },
+      {
+        "crossDocking":false,
+        "customerGoodsDetailNo":"0",
+        "defaultUnit":"箱",
+        "defaultUnitPre":5,
+        "ext":{
+          "goodUnit":"箱",
+          "isOverWarehouse":false,
+          "id":"5f400ab20bb34000b5d57f82ebdb7097"
+        },
+        "skuCode":"ADOMAOCAI"
+      }
+    ],
+    "storeManage":{
+      "createUser":"WMS2.0测试仓库",
+      "createUserId":"T1020007045",
+      "customerOrderNo":"U2022021600",
+      "ext":{
+        "needTransport":false,
+        "freshScmOrderNo":"PC2022021600",
+        "platformOrder":true
+      },
+      "note":"2021-12-08",
+      "shipperCode":"SSHF",
+      "shipperName":"SSHF",
+      "storeSource":"",
+      "storeTime":"2022-02-17 12:11",
+      "storeType":"订单入库",
+      "storeTypeCode":"DD",
+      "supplierName":"上海欣食代供应链管理有限公司-煲宫",
+      "tenantId":"T1020007045",
+      "tenantName":"WMS2.0测试仓库"
+    },
+    "tenantIdAndCustomerCode":{
+      "T1020007045":"SSHF"
+    }
+  }
+]
+
+### OMS下出库单（2.0）
+POST http://wms-web-plus.hope-saas-plus.qa.yunlizhi.net/warehouse_management_system/deliver_order/batch/save
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+[{
+  "deliverGoodsDetailList": [{
+    "batchNo": "22011122010100005",
+    "bigUnitConfirm": 0,
+    "conversionRate": 0,
+    "crossDocking": false,
+    "defaultUnitPre": 5.00000,
+    "ext": {},
+    "needFillStock": false,
+    "skuCode": "ADOMAOCAI",
+    "smallUnitConfirm": 0
+  }],
+  "deliverManage": {
+    "createUser": "WMS2.0测试仓库",
+    "createUserId": "T1020007045",
+    "customerOrderNo": "U20220111002",
+    "deliverSource": "OMS",
+    "deliverTime": "2022-01-11 12:00",
+    "deliverType": "订单出库",
+    "deliverTypeCode": "DD",
+    "deliverTypeEnum": "ORDER_OUT",
+    "ext": {
+      "needTransport": false,
+      "platformOrder": false
+    },
+    "note": "",
+    "pickupType": "CUSTOMER_DELIVERY",
+    "shipperCode": "SSHF",
+    "shipperName": "SSHF",
+    "stationId": "0027de4846b2489284920cd0dba2f3b7",
+    "tenantId": "T1020007045",
+    "tenantName": "WMS2.0测试租户"
+  },
+  "externalOrderNo": "U20220111002"
+}]
+
+### OMS查询库存（2.0）
+POST http://wms-web-plus.hope-saas-plus.qa.yunlizhi.net/warehouse_management_system/sku/stock/page
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "shipperCode": "SSHF",
+  "tenantId": "T1020007045",
+  "warehouseCode": "T1020007045",
+  "shipperGoodsCode": "ADOMAOCAI",
+  "goodsName": "ADO冒菜",
+  "skuCodes": [
+    "ADOMAOCAI"
+  ]
+}
+
+### WMS创建出库单（2.0）
+POST http://localhost:8080/deliver_order/save
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "bookingTime":1643299200000,
+  "customerOrderNo":null,
+  "deliverType":"ORDER_OUT",
+  "ext":null,
+  "externalOrderNo":null,
+  "files":[
+
+  ],
+  "goods":[
+    {
+      "batchAvailableAmount":null,
+      "batchField":null,
+      "batchNo":null,
+      "batchTotalAvailableAmount":null,
+      "batchValue":null,
+      "bigUnit":"箱",
+      "bookingAuxiliaryAmount":1,
+      "bookingNum":13,
+      "conversionRate":12,
+      "crossDocking":false,
+      "defaultUnit":"包",
+      "deliverOrderDetailId":2,
+      "goodsCode":"XSHCW0070451001068",
+      "goodsId":"5f400ab20bb34000b5d57f82ebdb7097",
+      "goodsName":"ADO冒菜",
+      "goodsQualityCode":null,
+      "goodsQualityDesc":null,
+      "originalOrderAmount":13,
+      "originalOrderDetailId":null,
+      "preLockBatchNos":[
+
+      ],
+      "quality":"GOOD",
+      "shipperGoodsAvailableAmount":21182,
+      "shipperGoodsCode":"ADOMAOCAI",
+      "shipperGoodsCodeBatchNoPair":{
+        "ADOMAOCAI":null
+      },
+      "shipperId":"8ee7a367ba6618ae2f33a3db36905c53",
+      "shipperName":"SSHF",
+      "smallUnit":"包",
+      "spec":"100cm",
+      "storehouseCode":null,
+      "storehouseId":null,
+      "temperatureLayer":"NORMAL",
+      "useAvailableAmount":false
+    }
+  ],
+  "handling":null,
+  "operatorId":"0e689294dc7540d0839328aaab62804e",
+  "operatorName":"李一航测试用户",
+  "outsourceHandling":null,
+  "pickupType":"CUSTOMER_DELIVERY",
+  "remark":null,
+  "shipperCode":"SSHF",
+  "shipperId":"8ee7a367ba6618ae2f33a3db36905c53",
+  "shipperName":"SSHF",
+  "source":null,
+  "stationAddress":"上海市松江区新松江路925-927弄开元地中海3楼和府捞面",
+  "stationCode":"ZD1627456353151",
+  "stationContact":"徐洪毅",
+  "stationId":"0027de4846b2489284920cd0dba2f3b7",
+  "stationName":"上海开元地中海商业广场",
+  "stationTelephone":"13818394235",
+  "tenantId":"T1020007045",
+  "tenantName":"WMS2.0测试租户",
+  "urgent":false,
+  "warehouseCode":"T1020007045",
+  "warehouseId":1757,
+  "useAvailableAmount":false
+}

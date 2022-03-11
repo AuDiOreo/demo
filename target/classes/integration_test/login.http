@@ -1,0 +1,29 @@
+### login
+GET {{ssoHost}}/hope-saas-auth-web/authLogin/loginBatch?userName={{userName}}&password={{password}}
+Accept: application/json
+Content-Type: application/json
+
+
+> {%
+client.global.set("Token", response.body.data.cacheLonginUser.token);
+client.global.set("legacyAuthToken", response.body.data.legacyToken);
+client.log(response.body.data.cacheLonginUser.token);
+%}
+
+### login to 2.0
+POST {{ssoHost}}/warehouse/login_by_password
+Accept: application/json
+Content-Type: application/json
+
+{
+  "clientCode": "wms_web",
+  "encryptType": "RSA",
+  "password": "{{password}}",
+  "userName": "{{userName}}"
+}
+
+> {%
+client.global.set("Token", response.body.data.token);
+client.global.set("legacyAuthToken", response.body.data.legacyToken);
+client.log(client.global.get("Token"));
+%}
